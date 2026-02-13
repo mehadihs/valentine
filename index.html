@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For My Votku 💖</title>
 
-<!-- Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Great+Vibes&family=Noto+Serif+Bengali:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -31,47 +30,54 @@ body{
     font-size:28px;
     font-weight:600;
     z-index:999;
-    animation:fadeOut 5s forwards;
-    animation-delay:5s;
+    animation:fadeOut 4s forwards;
+    animation-delay:4s;
 }
 
 @keyframes fadeOut{
     to{opacity:0;visibility:hidden;}
 }
 
-/* HERO SECTION */
+/* HERO SECTION WITH BACKGROUND IMAGE */
 .hero{
     min-height:100vh;
-    background:linear-gradient(to bottom,#000000cc,#000000ee),
-               url('lifa.jpeg') center/cover no-repeat;
+    background:url('lifa.jpeg') no-repeat center center/cover;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     padding:20px;
-    animation:fadeIn 3s;
+    position:relative;
+    text-align:center;
 }
 
-@keyframes fadeIn{
-    from{opacity:0;}
-    to{opacity:1;}
+.hero::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+}
+
+.hero > *{
+    position:relative;
+    z-index:2;
 }
 
 h1{
     font-family:'Great Vibes',cursive;
-    font-size:60px;
+    font-size:55px;
     color:#ff4d88;
+    margin-bottom:10px;
 }
 
 .timer{
-    margin-top:15px;
+    margin-top:10px;
     font-size:18px;
 }
 
-/* BUTTONS */
 button{
     margin:15px;
-    padding:15px 30px;
+    padding:15px 35px;
     border:none;
     border-radius:40px;
     font-size:18px;
@@ -93,26 +99,9 @@ button{
     color:#ff2e63;
 }
 
-/* LOVE LETTER */
-.letter{
-    padding:60px 20px;
-    background:#111;
-    line-height:1.8;
-    font-size:19px;
-    font-family:'Noto Serif Bengali',serif;
-}
-
-.letter h2{
-    font-family:'Great Vibes',cursive;
-    font-size:40px;
-    color:#ff4d88;
-    text-align:center;
-}
-
-/* FINAL MESSAGE */
 .final{
     display:none;
-    margin-top:30px;
+    margin-top:20px;
     font-size:22px;
     animation:glow 1s infinite alternate;
 }
@@ -122,7 +111,23 @@ button{
     to{text-shadow:0 0 25px #ff2e63;}
 }
 
-/* HEARTS */
+/* LETTER SECTION */
+.letter{
+    padding:60px 20px;
+    background:#111;
+    font-family:'Noto Serif Bengali',serif;
+    line-height:1.8;
+    font-size:19px;
+}
+
+.letter h2{
+    font-family:'Great Vibes',cursive;
+    font-size:40px;
+    color:#ff4d88;
+    text-align:center;
+}
+
+/* FLOATING HEARTS */
 .hearts{
     position:fixed;
     width:100%;
@@ -146,14 +151,9 @@ button{
 
 <body>
 
-<!-- Background Romantic Music -->
-<audio autoplay loop>
-<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4b5b2d1c6e.mp3" type="audio/mpeg">
-</audio>
-
 <!-- INTRO -->
 <div class="intro">
-Fabia Easmin Lifa... 💖 <br>
+Fabia Easmin Lifa 💖 <br>
 Since 2022... <br>
 Since the day you sat on my lap... <br>
 My Votku...
@@ -176,7 +176,7 @@ Forever starts now.
 </div>
 </div>
 
-<!-- LOVE LETTER -->
+<!-- LETTER -->
 <div class="letter">
 <h2>তোমার জন্য আমার কথা 💌</h2>
 
@@ -224,16 +224,19 @@ Forever starts now.
 <div class="hearts" id="hearts"></div>
 
 <script>
-// LOVE TIMER
-const startDate=new Date("January 1, 2022 00:00:00").getTime();
+// Love Timer (since Jan 1, 2022)
+const startDate = new Date("January 1, 2022 00:00:00").getTime();
+
 setInterval(function(){
-const now=new Date().getTime();
-const diff=now-startDate;
-const days=Math.floor(diff/(1000*60*60*24));
-const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-const minutes=Math.floor((diff%(1000*60*60))/(1000*60));
-document.getElementById("timer").innerHTML=
-"Together for: "+days+" days "+hours+" hours "+minutes+" minutes 💖";
+const now = new Date().getTime();
+const diff = now - startDate;
+
+const days = Math.floor(diff/(1000*60*60*24));
+const hours = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((diff%(1000*60*60))/(1000*60));
+
+document.getElementById("timer").innerHTML =
+"Together for: " + days + " days " + hours + " hours " + minutes + " minutes 💖";
 },1000);
 
 function sayYes(){
@@ -264,5 +267,3 @@ container.appendChild(heart);
 
 </body>
 </html>
-
-
