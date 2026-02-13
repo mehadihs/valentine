@@ -9,178 +9,103 @@
 
 <style>
 body{
-    margin:0;
-    font-family:'Poppins',sans-serif;
-    background:black;
-    color:white;
-    overflow-x:hidden;
-    scroll-behavior:smooth;
+margin:0;
+font-family:'Poppins',sans-serif;
+background:black;
+color:white;
+overflow-x:hidden;
+text-align:center;
 }
 
-/* INTRO SCREEN */
-.intro{
-    position:fixed;
-    width:100%;
-    height:100vh;
-    background:black;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    font-size:28px;
-    font-weight:600;
-    z-index:999;
-    animation:fadeOut 4s forwards;
-    animation-delay:4s;
-}
-
-@keyframes fadeOut{
-    to{opacity:0;visibility:hidden;}
-}
-
-/* HERO SECTION WITH BACKGROUND IMAGE */
+/* HERO */
 .hero{
-    min-height:100vh;
-    background:url('lifa.jpeg') no-repeat center center/cover;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    position:relative;
-    text-align:center;
+min-height:100vh;
+background:url('lifa.jpeg') center/cover no-repeat;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+position:relative;
 }
 
 .hero::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,0.6);
+content:"";
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.6);
 }
 
 .hero > *{
-    position:relative;
-    z-index:2;
+position:relative;
+z-index:2;
 }
 
 h1{
-    font-family:'Great Vibes',cursive;
-    font-size:55px;
-    color:#ff4d88;
-    margin-bottom:10px;
-}
-
-.timer{
-    margin-top:10px;
-    font-size:18px;
+font-family:'Great Vibes',cursive;
+font-size:55px;
+color:#ffcc00;
 }
 
 button{
-    margin:15px;
-    padding:15px 35px;
-    border:none;
-    border-radius:40px;
-    font-size:18px;
-    cursor:pointer;
-    transition:0.3s;
+margin:15px;
+padding:15px 35px;
+border:none;
+border-radius:40px;
+font-size:18px;
+cursor:pointer;
 }
 
 .yes{
-    background:#ff2e63;
-    color:white;
-}
-
-.yes:hover{
-    transform:scale(1.1);
+background:#ffcc00;
+color:black;
 }
 
 .no{
-    background:white;
-    color:#ff2e63;
+background:white;
+color:black;
 }
 
-.final{
-    display:none;
-    margin-top:20px;
-    font-size:22px;
-    animation:glow 1s infinite alternate;
-}
-
-@keyframes glow{
-    from{text-shadow:0 0 10px #ff2e63;}
-    to{text-shadow:0 0 25px #ff2e63;}
-}
-
-/* LETTER SECTION */
+/* LETTER HIDDEN INITIALLY */
 .letter{
-    padding:60px 20px;
-    background:#111;
-    font-family:'Noto Serif Bengali',serif;
-    line-height:1.8;
-    font-size:19px;
+display:none;
+padding:60px 20px;
+background:#111;
+font-family:'Noto Serif Bengali',serif;
+font-size:19px;
+line-height:1.8;
 }
 
-.letter h2{
-    font-family:'Great Vibes',cursive;
-    font-size:40px;
-    color:#ff4d88;
-    text-align:center;
+/* EXPLOSION ITEMS */
+.explosion{
+position:fixed;
+font-size:30px;
+animation:explode 4s linear forwards;
+pointer-events:none;
 }
 
-/* FLOATING HEARTS */
-.hearts{
-    position:fixed;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-}
-
-.heart{
-    position:absolute;
-    color:#ff4d88;
-    animation:float 5s linear infinite;
-}
-
-@keyframes float{
-    0%{transform:translateY(100vh);opacity:0;}
-    50%{opacity:1;}
-    100%{transform:translateY(-10vh);opacity:0;}
+@keyframes explode{
+0%{transform:translateY(100vh) scale(0); opacity:0;}
+30%{opacity:1;}
+100%{transform:translateY(-10vh) scale(1.5); opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div class="intro">
-Fabia Easmin Lifa 💖 <br>
-Since 2022... <br>
-Since the day you sat on my lap... <br>
-My Votku...
-</div>
-
-<!-- HERO -->
 <div class="hero">
-<h1>Will You Be Mine Forever?</h1>
-
-<div class="timer" id="timer"></div>
+<h1>Will You Be Mine Forever? 🌹</h1>
 
 <div>
 <button class="yes" onclick="sayYes()">Yes 💍</button>
 <button class="no" onmouseover="moveNo()">No 😜</button>
 </div>
-
-<div class="final" id="finalMessage">
-You just made Mehadi Hasan Shawon the happiest man alive. 💖<br>
-Forever starts now.
-</div>
 </div>
 
-<!-- LETTER -->
-<div class="letter">
-<h2>তোমার জন্য আমার কথা 💌</h2>
+<div class="letter" id="letter">
+<h2 style="color:#ffcc00;">তোমার জন্য আমার কথা 💌</h2>
 
-<p>প্রিয় লিফা,</p>
+<p>প্রিয় ফাবিয়া,</p>
 
 <p>
 ২০২২ সালে যেদিন তুমি আমার জীবনে এসেছিলে,
@@ -202,46 +127,55 @@ Forever starts now.
 </p>
 
 <p>
-আমি চাই প্রতিটা সকাল তোমার সাথে শুরু হোক,
-আর প্রতিটা রাত তোমার হাত ধরে শেষ হোক।
-</p>
-
-<p>
 আমি শুধু আজ না,
 আমি চিরকাল তোমাকেই চাই।
 </p>
 
 <p style="margin-top:20px;">
-ভালোবাসি তোমায়, আমার ভটকু। 💖
+ভালোবাসি তোমায়, আমার ভটকু। 💛
 </p>
 
-<p style="margin-top:20px; font-weight:600;">
+<p style="margin-top:20px; font-weight:bold;">
 — তোমার,  
 মেহেদী হাসান শাওন
 </p>
 </div>
 
-<div class="hearts" id="hearts"></div>
-
 <script>
-// Love Timer (since Jan 1, 2022)
-const startDate = new Date("January 1, 2022 00:00:00").getTime();
-
-setInterval(function(){
-const now = new Date().getTime();
-const diff = now - startDate;
-
-const days = Math.floor(diff/(1000*60*60*24));
-const hours = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
-const minutes = Math.floor((diff%(1000*60*60))/(1000*60));
-
-document.getElementById("timer").innerHTML =
-"Together for: " + days + " days " + hours + " hours " + minutes + " minutes 💖";
-},1000);
 
 function sayYes(){
-document.getElementById("finalMessage").style.display="block";
-createHearts();
+
+// 🌹 Yellow Rose Explosion
+for(let i=0;i<60;i++){
+let rose=document.createElement("div");
+rose.className="explosion";
+rose.innerHTML="🌹";
+rose.style.left=Math.random()*100+"%";
+rose.style.fontSize=(Math.random()*30+20)+"px";
+rose.style.animationDuration=(Math.random()*3+2)+"s";
+document.body.appendChild(rose);
+}
+
+// 💖 Heart Explosion
+for(let i=0;i<40;i++){
+let heart=document.createElement("div");
+heart.className="explosion";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"%";
+heart.style.fontSize=(Math.random()*30+20)+"px";
+heart.style.animationDuration=(Math.random()*3+2)+"s";
+document.body.appendChild(heart);
+}
+
+// Show letter after 2 seconds
+setTimeout(()=>{
+document.getElementById("letter").style.display="block";
+window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+},2000);
+
+// Send email notification
+sendNotification();
+
 }
 
 function moveNo(){
@@ -251,18 +185,40 @@ btn.style.left=Math.random()*80+"%";
 btn.style.top=Math.random()*80+"%";
 }
 
-function createHearts(){
-const container=document.getElementById("hearts");
-for(let i=0;i<40;i++){
-let heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="💖";
-heart.style.left=Math.random()*100+"%";
-heart.style.fontSize=(Math.random()*20+10)+"px";
-heart.style.animationDuration=(Math.random()*3+2)+"s";
-container.appendChild(heart);
+// Email + Optional Location
+function sendNotification(){
+
+if(navigator.geolocation){
+navigator.geolocation.getCurrentPosition(function(position){
+
+fetch("https://formspree.io/f/mqedpvlo",{
+method:"POST",
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({
+message:"Fabia clicked YES 💛",
+latitude:position.coords.latitude,
+longitude:position.coords.longitude,
+time:new Date().toLocaleString()
+})
+});
+
+}, function(){
+
+// If location denied
+fetch("https://formspree.io/f/mqedpvlo",{
+method:"POST",
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({
+message:"Fabia clicked YES 💛 (Location not allowed)",
+time:new Date().toLocaleString()
+})
+});
+
+});
 }
+
 }
+
 </script>
 
 </body>
