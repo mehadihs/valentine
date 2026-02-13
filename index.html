@@ -5,19 +5,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For My Votku 💖</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Great+Vibes&display=swap" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Great+Vibes&family=Noto+Serif+Bengali:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-body {
+body{
     margin:0;
     font-family:'Poppins',sans-serif;
     background:black;
     color:white;
     overflow-x:hidden;
-    text-align:center;
+    scroll-behavior:smooth;
 }
 
-.intro {
+/* INTRO SCREEN */
+.intro{
     position:fixed;
     width:100%;
     height:100vh;
@@ -25,40 +27,49 @@ body {
     display:flex;
     justify-content:center;
     align-items:center;
+    text-align:center;
     font-size:28px;
     font-weight:600;
     z-index:999;
-    animation: fadeOut 4s forwards;
-    animation-delay:4s;
+    animation:fadeOut 5s forwards;
+    animation-delay:5s;
 }
 
-@keyframes fadeOut {
-    to {opacity:0; visibility:hidden;}
+@keyframes fadeOut{
+    to{opacity:0;visibility:hidden;}
 }
 
-.hero {
+/* HERO SECTION */
+.hero{
     min-height:100vh;
-    background:linear-gradient(to bottom, #000000cc, #000000ee),
+    background:linear-gradient(to bottom,#000000cc,#000000ee),
                url('lifa.jpeg') center/cover no-repeat;
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
     padding:20px;
+    animation:fadeIn 3s;
 }
 
-h1 {
+@keyframes fadeIn{
+    from{opacity:0;}
+    to{opacity:1;}
+}
+
+h1{
     font-family:'Great Vibes',cursive;
     font-size:60px;
     color:#ff4d88;
 }
 
-.timer {
-    margin-top:20px;
+.timer{
+    margin-top:15px;
     font-size:18px;
 }
 
-button {
+/* BUTTONS */
+button{
     margin:15px;
     padding:15px 30px;
     border:none;
@@ -68,123 +79,190 @@ button {
     transition:0.3s;
 }
 
-.yes {
+.yes{
     background:#ff2e63;
     color:white;
 }
 
-.yes:hover {
+.yes:hover{
     transform:scale(1.1);
 }
 
-.no {
+.no{
     background:white;
     color:#ff2e63;
 }
 
-.final {
+/* LOVE LETTER */
+.letter{
+    padding:60px 20px;
+    background:#111;
+    line-height:1.8;
+    font-size:19px;
+    font-family:'Noto Serif Bengali',serif;
+}
+
+.letter h2{
+    font-family:'Great Vibes',cursive;
+    font-size:40px;
+    color:#ff4d88;
+    text-align:center;
+}
+
+/* FINAL MESSAGE */
+.final{
     display:none;
     margin-top:30px;
     font-size:22px;
-    animation: glow 1s infinite alternate;
+    animation:glow 1s infinite alternate;
 }
 
-@keyframes glow {
-    from {text-shadow:0 0 10px #ff2e63;}
-    to {text-shadow:0 0 25px #ff2e63;}
+@keyframes glow{
+    from{text-shadow:0 0 10px #ff2e63;}
+    to{text-shadow:0 0 25px #ff2e63;}
 }
 
-.hearts {
+/* HEARTS */
+.hearts{
     position:fixed;
     width:100%;
     height:100%;
     pointer-events:none;
-    overflow:hidden;
 }
 
-.heart {
+.heart{
     position:absolute;
     color:#ff4d88;
-    animation: float 5s linear infinite;
+    animation:float 5s linear infinite;
 }
 
-@keyframes float {
-    0% {transform:translateY(100vh); opacity:0;}
-    50% {opacity:1;}
-    100% {transform:translateY(-10vh); opacity:0;}
+@keyframes float{
+    0%{transform:translateY(100vh);opacity:0;}
+    50%{opacity:1;}
+    100%{transform:translateY(-10vh);opacity:0;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- Background Romantic Music -->
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_4b5b2d1c6e.mp3" type="audio/mpeg">
+</audio>
+
+<!-- INTRO -->
 <div class="intro">
-    Fabia Easmin Lifa... 💖 <br>
-    Since 2022... <br>
-    Since the day you sat on my lap... <br>
-    My Votku...
+Fabia Easmin Lifa... 💖 <br>
+Since 2022... <br>
+Since the day you sat on my lap... <br>
+My Votku...
 </div>
 
+<!-- HERO -->
 <div class="hero">
-    <h1>Will You Be Mine Forever?</h1>
+<h1>Will You Be Mine Forever?</h1>
 
-    <div class="timer" id="timer"></div>
+<div class="timer" id="timer"></div>
 
-    <div>
-        <button class="yes" onclick="sayYes()">Yes 💍</button>
-        <button class="no" onmouseover="moveNo()">No 😜</button>
-    </div>
+<div>
+<button class="yes" onclick="sayYes()">Yes 💍</button>
+<button class="no" onmouseover="moveNo()">No 😜</button>
+</div>
 
-    <div class="final" id="finalMessage">
-        You just made Mehadi Hasan Shawon the happiest man alive. 💖<br>
-        Forever starts now.
-    </div>
+<div class="final" id="finalMessage">
+You just made Mehadi Hasan Shawon the happiest man alive. 💖<br>
+Forever starts now.
+</div>
+</div>
+
+<!-- LOVE LETTER -->
+<div class="letter">
+<h2>তোমার জন্য আমার কথা 💌</h2>
+
+<p>প্রিয় লিফা,</p>
+
+<p>
+২০২২ সালে যেদিন তুমি আমার জীবনে এসেছিলে,
+সেদিন থেকেই আমার পৃথিবী বদলে গেছে।
+তোমার সাথে কাটানো প্রতিটা মুহূর্ত
+আমার হৃদয়ে গেঁথে আছে।
+</p>
+
+<p>
+যেদিন তুমি আমার কোলে বসেছিলে,
+সেটা শুধু একটা মুহূর্ত ছিল না,
+সেটা ছিল আমার জীবনের সবচেয়ে সুন্দর স্মৃতি।
+</p>
+
+<p>
+তুমি শুধু আমার ভালোবাসা নও,
+তুমি আমার শান্তি, আমার ভরসা,
+আমার স্বপ্ন আর আমার ভবিষ্যৎ।
+</p>
+
+<p>
+আমি চাই প্রতিটা সকাল তোমার সাথে শুরু হোক,
+আর প্রতিটা রাত তোমার হাত ধরে শেষ হোক।
+</p>
+
+<p>
+আমি শুধু আজ না,
+আমি চিরকাল তোমাকেই চাই।
+</p>
+
+<p style="margin-top:20px;">
+ভালোবাসি তোমায়, আমার ভটকু। 💖
+</p>
+
+<p style="margin-top:20px; font-weight:600;">
+— তোমার,  
+মেহেদী হাসান শাওন
+</p>
 </div>
 
 <div class="hearts" id="hearts"></div>
 
 <script>
-// Love timer since Jan 1 2022
-const startDate = new Date("January 1, 2022 00:00:00").getTime();
-
+// LOVE TIMER
+const startDate=new Date("January 1, 2022 00:00:00").getTime();
 setInterval(function(){
-    const now = new Date().getTime();
-    const diff = now - startDate;
-
-    const days = Math.floor(diff / (1000*60*60*24));
-    const hours = Math.floor((diff % (1000*60*60*24))/(1000*60*60));
-    const minutes = Math.floor((diff % (1000*60*60))/(1000*60));
-
-    document.getElementById("timer").innerHTML =
-    "Together for: " + days + " days " + hours + " hours " + minutes + " minutes 💖";
+const now=new Date().getTime();
+const diff=now-startDate;
+const days=Math.floor(diff/(1000*60*60*24));
+const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+const minutes=Math.floor((diff%(1000*60*60))/(1000*60));
+document.getElementById("timer").innerHTML=
+"Together for: "+days+" days "+hours+" hours "+minutes+" minutes 💖";
 },1000);
 
 function sayYes(){
-    document.getElementById("finalMessage").style.display="block";
-    createHearts();
+document.getElementById("finalMessage").style.display="block";
+createHearts();
 }
 
 function moveNo(){
-    const btn = document.querySelector(".no");
-    btn.style.position="absolute";
-    btn.style.left=Math.random()*80+"%";
-    btn.style.top=Math.random()*80+"%";
+const btn=document.querySelector(".no");
+btn.style.position="absolute";
+btn.style.left=Math.random()*80+"%";
+btn.style.top=Math.random()*80+"%";
 }
 
 function createHearts(){
-    const container=document.getElementById("hearts");
-    for(let i=0;i<30;i++){
-        let heart=document.createElement("div");
-        heart.className="heart";
-        heart.innerHTML="💖";
-        heart.style.left=Math.random()*100+"%";
-        heart.style.fontSize=(Math.random()*20+10)+"px";
-        heart.style.animationDuration=(Math.random()*3+2)+"s";
-        container.appendChild(heart);
-    }
+const container=document.getElementById("hearts");
+for(let i=0;i<40;i++){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="💖";
+heart.style.left=Math.random()*100+"%";
+heart.style.fontSize=(Math.random()*20+10)+"px";
+heart.style.animationDuration=(Math.random()*3+2)+"s";
+container.appendChild(heart);
+}
 }
 </script>
 
 </body>
 </html>
+
 
