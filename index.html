@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Votku 💖</title>
+<title>For My Votku 💛</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Great+Vibes&family=Noto+Serif+Bengali:wght@400;700&display=swap" rel="stylesheet">
 
@@ -14,7 +14,28 @@ font-family:'Poppins',sans-serif;
 background:black;
 color:white;
 overflow-x:hidden;
+scroll-behavior:smooth;
+}
+
+/* INTRO SCREEN */
+.intro{
+position:fixed;
+width:100%;
+height:100vh;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
 text-align:center;
+font-size:28px;
+font-weight:600;
+z-index:999;
+animation:fadeOut 4s forwards;
+animation-delay:4s;
+}
+
+@keyframes fadeOut{
+to{opacity:0;visibility:hidden;}
 }
 
 /* HERO */
@@ -26,6 +47,7 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 position:relative;
+text-align:center;
 }
 
 .hero::before{
@@ -42,7 +64,7 @@ z-index:2;
 
 h1{
 font-family:'Great Vibes',cursive;
-font-size:55px;
+font-size:60px;
 color:#ffcc00;
 }
 
@@ -53,6 +75,7 @@ border:none;
 border-radius:40px;
 font-size:18px;
 cursor:pointer;
+transition:0.3s;
 }
 
 .yes{
@@ -60,12 +83,16 @@ background:#ffcc00;
 color:black;
 }
 
+.yes:hover{
+transform:scale(1.1);
+}
+
 .no{
 background:white;
 color:black;
 }
 
-/* LETTER HIDDEN INITIALLY */
+/* LETTER */
 .letter{
 display:none;
 padding:60px 20px;
@@ -79,20 +106,37 @@ line-height:1.8;
 .explosion{
 position:fixed;
 font-size:30px;
-animation:explode 4s linear forwards;
 pointer-events:none;
+animation:explode 3s ease-out forwards;
 }
 
 @keyframes explode{
-0%{transform:translateY(100vh) scale(0); opacity:0;}
-30%{opacity:1;}
-100%{transform:translateY(-10vh) scale(1.5); opacity:0;}
+0%{
+transform:translateY(0) scale(0);
+opacity:1;
+}
+100%{
+transform:translate(
+calc((50vw - 100%) * (Math.random())),
+calc((50vh - 100%) * (Math.random()))
+) scale(1.5);
+opacity:0;
+}
 }
 </style>
 </head>
 
 <body>
 
+<!-- INTRO -->
+<div class="intro">
+Fabia Easmin Lifa 💛 <br>
+Since 2022... <br>
+Since the day you sat on my lap... <br>
+My Votku...
+</div>
+
+<!-- HERO -->
 <div class="hero">
 <h1>Will You Be Mine Forever? 🌹</h1>
 
@@ -102,10 +146,11 @@ pointer-events:none;
 </div>
 </div>
 
+<!-- LETTER -->
 <div class="letter" id="letter">
 <h2 style="color:#ffcc00;">তোমার জন্য আমার কথা 💌</h2>
 
-<p>প্রিয় ফাবিয়া,</p>
+<p>প্রিয় লিফা,</p>
 
 <p>
 ২০২২ সালে যেদিন তুমি আমার জীবনে এসেছিলে,
@@ -116,18 +161,15 @@ pointer-events:none;
 
 <p>
 যেদিন তুমি আমার কোলে বসেছিলে,
-সেটা শুধু একটা মুহূর্ত ছিল না,
 সেটা ছিল আমার জীবনের সবচেয়ে সুন্দর স্মৃতি।
 </p>
 
 <p>
-তুমি শুধু আমার ভালোবাসা নও,
 তুমি আমার শান্তি, আমার ভরসা,
 আমার স্বপ্ন আর আমার ভবিষ্যৎ।
 </p>
 
 <p>
-আমি শুধু আজ না,
 আমি চিরকাল তোমাকেই চাই।
 </p>
 
@@ -145,37 +187,48 @@ pointer-events:none;
 
 function sayYes(){
 
-// 🌹 Yellow Rose Explosion
-for(let i=0;i<60;i++){
-let rose=document.createElement("div");
-rose.className="explosion";
-rose.innerHTML="🌹";
-rose.style.left=Math.random()*100+"%";
-rose.style.fontSize=(Math.random()*30+20)+"px";
-rose.style.animationDuration=(Math.random()*3+2)+"s";
-document.body.appendChild(rose);
+// 🌹 YELLOW ROSE EXPLOSION
+for(let i=0;i<80;i++){
+createExplosion("🌹");
 }
 
-// 💖 Heart Explosion
-for(let i=0;i<40;i++){
-let heart=document.createElement("div");
-heart.className="explosion";
-heart.innerHTML="💖";
-heart.style.left=Math.random()*100+"%";
-heart.style.fontSize=(Math.random()*30+20)+"px";
-heart.style.animationDuration=(Math.random()*3+2)+"s";
-document.body.appendChild(heart);
+// 💖 HEART EXPLOSION
+for(let i=0;i<80;i++){
+createExplosion("💖");
 }
 
-// Show letter after 2 seconds
+// Show letter after explosion
 setTimeout(()=>{
 document.getElementById("letter").style.display="block";
 window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
 },2000);
 
 // Send email notification
-sendNotification();
+fetch("https://formspree.io/f/mqedpvlo",{
+method:"POST",
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({
+message:"Fabia clicked YES 💛",
+time:new Date().toLocaleString()
+})
+});
+}
 
+function createExplosion(emoji){
+let el=document.createElement("div");
+el.className="explosion";
+el.innerHTML=emoji;
+
+let x = Math.random()*window.innerWidth;
+let y = Math.random()*window.innerHeight;
+
+el.style.left=x+"px";
+el.style.top=y+"px";
+el.style.fontSize=(Math.random()*40+20)+"px";
+
+document.body.appendChild(el);
+
+setTimeout(()=>{el.remove();},3000);
 }
 
 function moveNo(){
@@ -183,40 +236,6 @@ const btn=document.querySelector(".no");
 btn.style.position="absolute";
 btn.style.left=Math.random()*80+"%";
 btn.style.top=Math.random()*80+"%";
-}
-
-// Email + Optional Location
-function sendNotification(){
-
-if(navigator.geolocation){
-navigator.geolocation.getCurrentPosition(function(position){
-
-fetch("https://formspree.io/f/mqedpvlo",{
-method:"POST",
-headers:{'Content-Type':'application/json'},
-body:JSON.stringify({
-message:"Fabia clicked YES 💛",
-latitude:position.coords.latitude,
-longitude:position.coords.longitude,
-time:new Date().toLocaleString()
-})
-});
-
-}, function(){
-
-// If location denied
-fetch("https://formspree.io/f/mqedpvlo",{
-method:"POST",
-headers:{'Content-Type':'application/json'},
-body:JSON.stringify({
-message:"Fabia clicked YES 💛 (Location not allowed)",
-time:new Date().toLocaleString()
-})
-});
-
-});
-}
-
 }
 
 </script>
