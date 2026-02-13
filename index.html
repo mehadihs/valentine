@@ -17,7 +17,7 @@ overflow-x:hidden;
 scroll-behavior:smooth;
 }
 
-/* INTRO SCREEN */
+/* INTRO */
 .intro{
 position:fixed;
 width:100%;
@@ -64,18 +64,18 @@ z-index:2;
 
 h1{
 font-family:'Great Vibes',cursive;
-font-size:60px;
+font-size:65px;
 color:#ffcc00;
 }
 
 button{
 margin:15px;
-padding:15px 35px;
+padding:15px 40px;
 border:none;
 border-radius:40px;
-font-size:18px;
+font-size:20px;
 cursor:pointer;
-transition:0.3s;
+transition:0.2s;
 }
 
 .yes{
@@ -83,13 +83,10 @@ background:#ffcc00;
 color:black;
 }
 
-.yes:hover{
-transform:scale(1.1);
-}
-
 .no{
 background:white;
 color:black;
+position:relative;
 }
 
 /* LETTER */
@@ -102,33 +99,48 @@ font-size:19px;
 line-height:1.8;
 }
 
-/* EXPLOSION ITEMS */
+/* EXPLOSION ELEMENTS */
 .explosion{
 position:fixed;
-font-size:30px;
 pointer-events:none;
-animation:explode 3s ease-out forwards;
+animation:burst 3s ease-out forwards;
 }
 
-@keyframes explode{
-0%{
-transform:translateY(0) scale(0);
-opacity:1;
+@keyframes burst{
+0%{transform:scale(0);opacity:1;}
+100%{transform:translate(var(--x), var(--y)) scale(1.8);opacity:0;}
 }
-100%{
-transform:translate(
-calc((50vw - 100%) * (Math.random())),
-calc((50vh - 100%) * (Math.random()))
-) scale(1.5);
-opacity:0;
+
+/* BALLOONS */
+.balloon{
+position:fixed;
+bottom:-100px;
+font-size:40px;
+animation:fly 6s linear forwards;
 }
+
+@keyframes fly{
+0%{transform:translateY(0);}
+100%{transform:translateY(-120vh);}
+}
+
+/* SCREEN SHAKE */
+.shake{
+animation:shakeScreen 0.4s infinite;
+}
+
+@keyframes shakeScreen{
+0%{transform:translate(2px,2px);}
+25%{transform:translate(-2px,-2px);}
+50%{transform:translate(2px,-2px);}
+75%{transform:translate(-2px,2px);}
+100%{transform:translate(0,0);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
 <div class="intro">
 Fabia Easmin Lifa 💛 <br>
 Since 2022... <br>
@@ -136,74 +148,70 @@ Since the day you sat on my lap... <br>
 My Votku...
 </div>
 
-<!-- HERO -->
 <div class="hero">
 <h1>Will You Be Mine Forever? 🌹</h1>
 
 <div>
 <button class="yes" onclick="sayYes()">Yes 💍</button>
-<button class="no" onmouseover="moveNo()">No 😜</button>
+<button class="no" id="noBtn">No 😜</button>
 </div>
 </div>
 
-<!-- LETTER -->
 <div class="letter" id="letter">
-<h2 style="color:#ffcc00;">তোমার জন্য আমার কথা 💌</h2>
+<h2 style="color:#ffcc00;">তোমার জন্য আমার কিছু কথা 💌</h2>
 
-<p>প্রিয় লিফা,</p>
-
+<p>প্রিয় ফাবিয়া,</p>
 <p>
 ২০২২ সালে যেদিন তুমি আমার জীবনে এসেছিলে,
 সেদিন থেকেই আমার পৃথিবী বদলে গেছে।
 তোমার সাথে কাটানো প্রতিটা মুহূর্ত
 আমার হৃদয়ে গেঁথে আছে।
 </p>
-
 <p>
 যেদিন তুমি আমার কোলে বসেছিলে,
 সেটা ছিল আমার জীবনের সবচেয়ে সুন্দর স্মৃতি।
 </p>
-
 <p>
 তুমি আমার শান্তি, আমার ভরসা,
 আমার স্বপ্ন আর আমার ভবিষ্যৎ।
 </p>
-
-<p>
-আমি চিরকাল তোমাকেই চাই।
-</p>
-
-<p style="margin-top:20px;">
-ভালোবাসি তোমায়, আমার ভটকু। 💛
-</p>
-
-<p style="margin-top:20px; font-weight:bold;">
-— তোমার,  
-মেহেদী হাসান শাওন
-</p>
+<p>আমি চিরকাল তোমাকেই চাই।</p>
+<p> কেমন লাগলো?, আমার ভোটকু। 💛</p>
+<p style="font-weight:bold;">— তোমার, মেহেদী হাসান শাওন</p>
 </div>
 
 <script>
 
+// MASSIVE CELEBRATION
 function sayYes(){
 
-// 🌹 YELLOW ROSE EXPLOSION
-for(let i=0;i<80;i++){
+document.body.classList.add("shake");
+
+// 🌹 ROSES
+for(let i=0;i<120;i++){
 createExplosion("🌹");
 }
 
-// 💖 HEART EXPLOSION
-for(let i=0;i<80;i++){
+// 💖 HEARTS
+for(let i=0;i<120;i++){
 createExplosion("💖");
 }
 
-// Show letter after explosion
+// 🎈 BALLOONS
+for(let i=0;i<40;i++){
+createBalloon();
+}
+
+// Stop shaking after 1.5s
+setTimeout(()=>{document.body.classList.remove("shake");},1500);
+
+// Show letter after celebration
 setTimeout(()=>{
 document.getElementById("letter").style.display="block";
 window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
-},2000);
+},2500);
 
-// Send email notification
+// Email notification
 fetch("https://formspree.io/f/mqedpvlo",{
 method:"POST",
 headers:{'Content-Type':'application/json'},
@@ -212,18 +220,25 @@ message:"Fabia clicked YES 💛",
 time:new Date().toLocaleString()
 })
 });
+
 }
 
+// Create explosion
 function createExplosion(emoji){
 let el=document.createElement("div");
 el.className="explosion";
 el.innerHTML=emoji;
 
-let x = Math.random()*window.innerWidth;
-let y = Math.random()*window.innerHeight;
+let angle=Math.random()*2*Math.PI;
+let distance=Math.random()*600+100;
 
-el.style.left=x+"px";
-el.style.top=y+"px";
+let x=Math.cos(angle)*distance+"px";
+let y=Math.sin(angle)*distance+"px";
+
+el.style.left=window.innerWidth/2+"px";
+el.style.top=window.innerHeight/2+"px";
+el.style.setProperty("--x",x);
+el.style.setProperty("--y",y);
 el.style.fontSize=(Math.random()*40+20)+"px";
 
 document.body.appendChild(el);
@@ -231,12 +246,27 @@ document.body.appendChild(el);
 setTimeout(()=>{el.remove();},3000);
 }
 
-function moveNo(){
-const btn=document.querySelector(".no");
-btn.style.position="absolute";
-btn.style.left=Math.random()*80+"%";
-btn.style.top=Math.random()*80+"%";
+// Create balloon
+function createBalloon(){
+let balloon=document.createElement("div");
+balloon.className="balloon";
+balloon.innerHTML=["🎈","🎉","🎊"][Math.floor(Math.random()*3)];
+balloon.style.left=Math.random()*100+"%";
+document.body.appendChild(balloon);
+setTimeout(()=>{balloon.remove();},6000);
 }
+
+// PROPER ESCAPING NO BUTTON
+const noBtn=document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseenter",()=>{
+let x=Math.random()*(window.innerWidth-100);
+let y=Math.random()*(window.innerHeight-50);
+
+noBtn.style.position="fixed";
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+});
 
 </script>
 
