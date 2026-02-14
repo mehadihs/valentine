@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For My Votku 💛</title>
+<title>For My Disha 💛</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Great+Vibes&family=Noto+Serif+Bengali:wght@400;700&display=swap" rel="stylesheet">
 
@@ -41,7 +41,7 @@ to{opacity:0;visibility:hidden;}
 /* HERO */
 .hero{
 min-height:100vh;
-background:url('lifa.jpeg') center/cover no-repeat;
+background:url('disha.jpeg') center/cover no-repeat;
 display:flex;
 flex-direction:column;
 justify-content:center;
@@ -142,10 +142,10 @@ animation:shakeScreen 0.4s infinite;
 <body>
 
 <div class="intro">
-Fabia Easmin Lifa 💛 <br>
-Since 2022... <br>
-Since the day you sat on my lap... <br>
-My Votku...
+Isma Ara Disha 💛 <br>
+Since 13th January... <br>
+Forever's Mehadis... <br>
+My Disha...
 </div>
 
 <div class="hero">
@@ -160,70 +160,78 @@ My Votku...
 <div class="letter" id="letter">
 <h2 style="color:#ffcc00;">তোমার জন্য আমার কিছু কথা 💌</h2>
 
-<p>প্রিয় ফাবিয়া,</p>
+<p>প্রিয় দিশা,</p>
+
 <p>
-২০২২ সালে যেদিন তুমি আমার জীবনে এসেছিলে,
-সেদিন থেকেই আমার পৃথিবী বদলে গেছে।
-তোমার সাথে কাটানো প্রতিটা মুহূর্ত
-আমার হৃদয়ে গেঁথে আছে।
+১৩ই জানুয়ারি প্রথম তোমাকে মহিন্দ্রাতে দেখেছিলাম।
+সেদিন তোমার চোখের রং, তোমার তাকানোর ভঙ্গি —
+সবকিছু আমাকে অবাক করে দিয়েছিল।
+সেই মুহূর্তেই যেন আমার হৃদয় তোমার হয়ে গিয়েছিল।
 </p>
+
 <p>
+২৫শে জানুয়ারি তুমি যখন প্রথম আমাকে জড়িয়ে ধরেছিলে,
+সেই অনুভূতিটা ছিল স্বর্গীয়।
+মনে হচ্ছিল পৃথিবীর সব শান্তি যেন আমার বুকের ভেতর এসে থেমে গেছে।
+</p>
+
+<p>
+২৯শে জানুয়ারি —
 যেদিন তুমি আমার কোলে বসেছিলে,
-সেটা ছিল আমার জীবনের সবচেয়ে সুন্দর স্মৃতি।
+সেটা আমার পুরো জীবনের সবচেয়ে সুন্দর স্মৃতি।
+সেই মুহূর্তটা আমি সারাজীবন ধরে রাখতে চাই।
 </p>
+
 <p>
-তুমি আমার শান্তি, আমার ভরসা,
-আমার স্বপ্ন আর আমার ভবিষ্যৎ।
+দিশা, তুমি শুধু আমার ভালোবাসা না,
+তুমি আমার স্বপ্ন, আমার ভবিষ্যৎ,
+আমার প্রতিটা আগামী দিনের কারণ।
 </p>
-<p>আমি চিরকাল তোমাকেই চাই।</p>
-<p> কেমন লাগলো?, আমার ভোটকু। 💛</p>
+
+<p>
+আমি চিরকাল তোমাকেই চাই।
+চিরকাল আমার দিশা হয়ে থেকো। 💛
+</p>
+
 <p style="font-weight:bold;">— তোমার, মেহেদী হাসান শাওন</p>
 </div>
 
 <script>
 
-// MASSIVE CELEBRATION
 function sayYes(){
 
 document.body.classList.add("shake");
 
-// 🌹 ROSES
 for(let i=0;i<120;i++){
 createExplosion("🌹");
 }
 
-// 💖 HEARTS
 for(let i=0;i<120;i++){
 createExplosion("💖");
 }
 
-// 🎈 BALLOONS
 for(let i=0;i<40;i++){
 createBalloon();
 }
 
-// Stop shaking after 1.5s
 setTimeout(()=>{document.body.classList.remove("shake");},1500);
 
-// Show letter after celebration
 setTimeout(()=>{
 document.getElementById("letter").style.display="block";
 window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
 },2500);
 
-// Email notification
 fetch("https://formspree.io/f/mqedpvlo",{
 method:"POST",
 headers:{'Content-Type':'application/json'},
 body:JSON.stringify({
-message:"Fabia clicked YES 💛",
+message:"Disha clicked YES 💛",
 time:new Date().toLocaleString()
 })
 });
 
 }
 
-// Create explosion
 function createExplosion(emoji){
 let el=document.createElement("div");
 el.className="explosion";
@@ -246,7 +254,6 @@ document.body.appendChild(el);
 setTimeout(()=>{el.remove();},3000);
 }
 
-// Create balloon
 function createBalloon(){
 let balloon=document.createElement("div");
 balloon.className="balloon";
@@ -256,7 +263,6 @@ document.body.appendChild(balloon);
 setTimeout(()=>{balloon.remove();},6000);
 }
 
-// PROPER ESCAPING NO BUTTON
 const noBtn=document.getElementById("noBtn");
 
 noBtn.addEventListener("mouseenter",()=>{
